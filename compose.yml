@@ -15,8 +15,20 @@ services:
     image: mysql
     environment: 
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - 3306:3306
+    volumes:
+      - app-data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - 8080:80
+    environment:
+        MYSQL_USERNAME: '${DB_USERNAME}'
+        MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+        PMA_HOST: ${DB_HOST}
+volumes:
+  app-data:
