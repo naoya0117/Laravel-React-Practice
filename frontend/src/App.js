@@ -7,7 +7,7 @@ function App() {
   useEffect(() => {
     (async() => {
       try {
-        const response = await axios.get("http://127.0.0.1/api/greeting")
+        const response = await axios.get("http://127.0.0.1:8000/api/greeting")
         setGreeting(response.data.greeting)
       } catch (error) {
         console.error(error)
